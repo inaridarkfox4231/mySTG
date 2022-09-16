@@ -1968,7 +1968,9 @@ function interpretCommand(data, command, index){
     // {loop:10, back:5}のような形。
     result.count = command.loop;
     // たとえば-1なら先頭、のように負の場合はindex+1を加える感じ。
-    result.back = (command.back >= 0 ? command.back : command.back + index + 1);
+    // 20220731 これもう使われてないですね...↓ だって文字列を0以上の数値orINFにしちゃうから。
+    // というわけでもうindexは引数に取らなくてもいいわけですね。
+  result.back = (command.back >= 0 ? command.back : command.back + index + 1);
     return result;
   }
   if(_type === "aim"){ result.margin = command.aim; return result; } // 狙う際のマージン
